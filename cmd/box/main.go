@@ -87,13 +87,9 @@ func main() {
 		}
 
 		f := gist.Files[github.GistFilename(filename)]
-		fmt.Println(f)
 
 		f.Content = github.String(strings.Join(lines, "\n"))
 		gist.Files[github.GistFilename(filename)] = f
-                fmt.Println(f)
-                fmt.Println(gist)
-
 
 		err = box.UpdateGist(ctx, gistID, gist)
 		if err != nil {
