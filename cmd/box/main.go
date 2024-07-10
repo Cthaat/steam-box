@@ -30,7 +30,6 @@ func main() {
 	ghToken := os.Getenv("GH_TOKEN")
 	ghUsername := os.Getenv("GH_USER")
 	gistID := os.Getenv("GIST_ID")
-	fmt.Println(gistID)
 
 	steamOption := "ALLTIME" // options for types of games to list: RECENT (recently played games), ALLTIME <default> (playtime of games in descending order)
 	if os.Getenv("STEAM_OPTION") != "" {
@@ -88,9 +87,13 @@ func main() {
 		}
 
 		f := gist.Files[github.GistFilename(filename)]
+		fmt.Println(f)
 
 		f.Content = github.String(strings.Join(lines, "\n"))
 		gist.Files[github.GistFilename(filename)] = f
+                fmt.Println(f)
+                fmt.Println(gist)
+
 
 		err = box.UpdateGist(ctx, gistID, gist)
 		if err != nil {
